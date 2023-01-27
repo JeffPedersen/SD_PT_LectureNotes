@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intro to Git</title>
+    <style>
+
+        body {
+            text-align: center;
+        }
+
+        table {
+            margin: 0 30%;
+            border: black 2px solid;
+            align-self: center;
+        }
+
+        thead th {
+            width: 300px;
+        }
+
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            Intro to Git & Github
+            <th>Command</th>
+            <th>Description</th>
+            <!-- th = Table header -->
+        </thead>
+        <tbody>
+            <tr>
+                <td><pre>git innit</pre></td>   
+                <td>Initializes our repository on our machines</td>
+            </tr>
+            <tr>
+                <td><pre>git status</pre></td>
+                <td>Displays tracked files and their status</td>
+            </tr>
+            <tr>
+            <tr><pre>git add</pre> or <pre>git add .</pre></tr>
+            <td>Stages any changed files, add to the comit</td>
+            </tr>
+            <tr>
+                <td><pre>git commit -m "your message"</pre></td>
+                <td>Clears the stating and provides the 'why', a label for the comit contains</td>
+            </tr>
+            <tr>
+                <td><pre>git push</pre></td>
+                <td>Uploads your local comits</td>
+            </tr>
+            <tr>
+                <td><pre>git pull</pre></td>
+                <td>Downloads or 'pulls down' any changes from GitHub</td>
+            </tr>
+            <tr>
+                <td><pre>git remote add origin https://github.com/JeffPedersen/nameOfGitHubRepo </pre></td>
+                <td>Connects URL origin to local project</td>
+            </tr>
+            <tr>
+                <td><pre>git branch -M main</pre></td>
+                <td>Renames the master branch to main</td>
+            </tr>
+            <tr>
+                <td><pre>git push -u origin main</pre></td>
+                <td>Sends upstream to our origin main to update code</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <ul>
+        <h2>When Updating a Repo</h2>
+        <li style="list-style-type: none;">git add .</li>
+        <li style="list-style-type: none;">git commit -m "message here"</li>
+        <li style="list-style-type: none;">git push origin main</li>
+    </ul>
+</body>
+</html>

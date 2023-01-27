@@ -1,0 +1,89 @@
+/* 
+    * CSS Ruleset / Rules : the styling for a particular element(s)
+
+    Building Blocks of a Ruleset:
+    selector {
+            [ Declaration Block is the content of the {} ]
+            property: value;
+    }
+
+    Hierarchy:
+    - !important
+    - Inline CSS
+    - ID Selectors
+    - Class Selectors
+    - Elements
+*/
+
+/* We are targeting the element */
+nav{
+    background-color: grey;
+    /*
+    - preset colors: red, blue, yellow, etc.
+        - rgb & rgba (red, green, blue, alpha)
+            - alpha determines transparency
+            - ex: rgba(200, 15, 100, .5);
+        - Hexadecimal
+            - 16 digits: 0-9, A-F
+            - ex: #d2d2d2
+    */
+    overflow: hidden;
+}
+
+
+/* aTargeting elements with a class, . */
+.btn {
+    float: right;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 24px;
+}
+
+/* Targeting element with an id, # */
+#home {
+    float: left;
+    color: pink !important;
+}
+
+/* 
+    * Compound Operators:
+            > Refers to direct children of an elements
+            , Matching selector 
+            + Immediate sibling of an elements
+            ~ Subsequent/Preceding siblings of an element 
+*/
+
+nav .btn {
+    text-shadow: 2px 2px 2px black;
+}
+
+div .paragraph > p {
+    /* targeting any div with a class "paragraph" that is holding a <p> element */
+    color: purple
+}
+
+.paragraph + div {
+    color: burlywood
+}
+
+/* 
+    psuedo-Class Selectors
+        - Interactive effects, making elements 'do' things
+        - Visual responses or clues for your users
+*/
+
+a:hover {
+    color:lightgreen;
+
+    /* 
+    Mousing over and a tag will alters its colors 
+    Home above is marked as important so this rule does not apply
+    */
+}œ
+
+a:active {
+    color: lime;
+    text-shadow: 2px 2px 2px rgba(255, 255, 255);
+}
