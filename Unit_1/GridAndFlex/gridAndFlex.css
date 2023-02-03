@@ -1,0 +1,91 @@
+/* ! GRID STYLING */
+/* 
+    grid-template-rows: 2fr 20% 200px; <-- details the row only.
+
+    grid-template-column: 2fr 50% 100px; <-- details the column only.
+        - can use the same measurements.
+
+    columns: 
+        - Required
+        - If not set, only one column will be default
+    rows: 
+        - Optional
+        - Necessary if rows are different sizes
+    gaps: 
+        - Determine the gap between row/columns 
+        - property used with gap is uniform: 
+            - column -gap, specifies column only
+            - row-gap, specifies row only
+*/
+.grid-sample {
+    display: grid;
+    grid-template: repeat(4, 25%), repeat(8, 12.5%);
+    /* 
+        - rows will be divided up into quarters
+        - columns are divided into 8ths
+         */
+}
+
+.grid-sample h1 {
+    text-align: center;
+    grid-column: span 8;
+    /* 
+     - the h1 spans with width of 8 columns
+    */
+}
+
+#grid-sidebar {
+    grid-column-start: 1; 
+    grid-column-end: span 2;
+    grid-row: 2;
+    grid-row: span 2;
+    /* 
+        - Will start in column 1 and only cover 2 columns
+        - Will start on the second row and cover only two rows
+    */
+}
+
+#grid-article {
+    grid-area: 2 / 3 / 3 / 9 ;
+    /* 
+        - row start / column start / row end / column end
+    */
+}
+
+.grid-sample footer {
+    text-align: center;
+    grid-column: 1 / span 8;
+    grid-row: 4;
+    /*
+        - Starts in column 1 and spans the entire 8 columns
+        - Will start at the 4th row. 
+            - Doesn't need to note ending as this is the last row.
+    */
+}
+
+/* ! FLEX STYLING */
+.flex-sample {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* align is now "shifter" to left-right due to the direction being declared column */
+}
+
+#flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    /* defines if the children elements should wrap the viewport width */
+    justify-content: space-evenly;
+}
+
+#inside-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.flex-sample footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
