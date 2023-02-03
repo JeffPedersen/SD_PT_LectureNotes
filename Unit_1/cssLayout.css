@@ -1,0 +1,68 @@
+/* .name calls on an class */
+.sample {
+    height: 50px;
+    border: solid black 1px;
+    background-color: darkorange;
+    margin: 10px;  /* Always a baked in 10px margin, saying 10px makes it 20px total */
+}
+
+/* #name calls on an id */
+#block-sample {
+    display: block;
+}
+
+#inline-sample {
+    display: inline;
+}
+
+#none-sample {
+    display: none;
+}
+
+.block-elements > * {
+    border: 1px solid blueviolet;
+}
+
+.inline-elements > * {
+    border: 1px solid red;
+}
+
+#relative-sample {
+    height: 50px;
+    width: 50px;
+    position: relative;
+    top: 20px;
+    left: 10px;
+    background-color: green;
+    /* Position properties from relative
+    Example - left is 10px from the left side
+    more px - further right
+    backwards, right? 
+    Negatives work also btw*/
+}
+
+#absolute-sample {
+    height: 50px;
+    width: 50px;
+    position: absolute; /* CHANGED */
+    top: 20px; 
+    right: 30px; /* CHANGED */
+    background-color: blue; /* CHANGED */
+}
+
+#fixed-sample {
+    height: 50px;
+    width: 50px;
+    position: fixed; /*CHANGED */
+    bottom: 20px;
+    left: 100px; /*CHANGED*/
+    background-color: black; /* CHANGED*/
+}
+
+#static-sample {
+    height: 50px;
+    width: 50px;
+    position: static; /*CHANGED */
+    left: 100px; /*DOESN'T MOVE*/
+    background-color: red; /* CHANGED */
+}

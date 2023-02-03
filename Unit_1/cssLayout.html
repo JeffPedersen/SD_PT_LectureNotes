@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./cssLayout.css">
+    <title>CSS Layout</title>
+</head>
+<body>
+    <!-- 
+        * Block:
+            - New line
+            - Full width of the body
+            - Can contain both block and inline elements
+        * Inline:
+            - Same line
+            - Width of content
+            - Can ONLY contain data or other inline elements
+     -->
+
+     <!-- div*3
+          div.sample*3
+    -->
+
+     <div class="sample" id="block-sample"></div>
+     <div class="sample" id="inline-sample">Width of element content!</div>
+     <div class="sample" id="none-sample"></div>
+
+     <hr>
+
+     <h1>Block Elements Examples</h1>
+     <!-- command+enter sends you down once -->
+     <div class="block-elements">
+        <div>Divs & h1-h6</div>
+        <p>Paragraphs</p>
+        <table>
+            Tables
+            <tr>
+                <td>One</td>
+            </tr>
+        </table>
+        <form>
+            Forms
+        </form>
+        <ul>
+            <li>Unordered List</li>
+        </ul>
+        <ol>
+            <li>Ordered List</li>
+        </ol>
+        <nav>Nav</nav>
+     </div>
+     
+
+     <h1>Inline Elements Examples</h1>
+     <div class="inline-elements">
+        <span>Span</span>
+        <a href="#">anchor tags</a>
+        <i>italics</i>
+        <em>emphasis</em>
+        <b>bold</b>
+        <strong>strong</strong>
+        <img src="#" alt="img tags">
+        <button>buttons</button>
+    </div>
+
+    <hr>
+
+    <!-- * CSS Position Property:
+            - Relative - elements are relative to the overall HTML document, can change position with top, left, etc.
+            - Absolute - element is relative to it's parent or ancestor
+            - Fixed - This is governed by the viewport of the browser/ Depending on what the user is using will depend on where it is at.  
+            - Static -  This works just like relative but doesn't have the options to be moved with the properties of top/left/right/bottom
+    -->
+    
+    <div class="sample">
+        <div id="relative-sample"></div>
+        <div id="absolute-sample"></div>
+        <div id="fixed-sample"></div>
+        <div id="static-sample"></div>
+
+    </div>
+</body>
+</html>
