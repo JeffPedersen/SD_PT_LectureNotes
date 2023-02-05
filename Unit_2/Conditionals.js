@@ -136,16 +136,48 @@ let bff = "Ben";
 console.log(`My name is ${myName} and my best friendo is ${bff}!`); // YOU HAVE TO RUN SINGLE QUOTES OR ELSE IT WONT WORK!!!!
 console.log("My name is ${myName} and my best friendo is ${bff}!"); // THIS ONE WONT WORK "" INDICATES A NORMIE STRING
 
-let num = 5;
+let num = -7;
 
 switch (true) {
-    case num < 0 && num > -10:
+    case num < 0 && num > -10: // colon indicates what belongs to case
         console.log("Case 1 ran.");
         break;
-    case num > 0: // colon inddicates what belongs to case
+    case num > 0: // colon indicates what belongs to case
         console.log("Case 2 ran.");
         break;
     default:
         console.log("Default ran, no case worked");
         break;
 }
+
+let grade = "B";
+switch (true) {
+    case grade == "A":
+    case grade == "B":
+        console.log("Great job.")
+        break;
+    case grade == "C":
+        console.log("Doing well, but maybe study a bit more.")
+        break;
+    case grade == "D": 
+    case grade == "F": 
+        console.log("Uh, I would really start studying...")
+        break;
+    default:
+        console.log("That's not a grade value...")
+}
+
+// ? Ternary
+/* 
+    Always a If/Else style conditional at minimum
+    Structure:
+    expression ? true : false
+    ;
+*/
+
+let expression = true;
+
+expression ? console.log ("Runs true") : console.log ("Runs false");
+
+let newNum = 6;
+newNum > 0 ? console.log("yes, greater than zero") : console.log("No, less than zero");
