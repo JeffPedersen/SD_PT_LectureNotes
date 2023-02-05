@@ -86,6 +86,66 @@ if (!rain) {
     console.log("Get ur jacket!")
 }
 
+// ? Switch Statements
+/* 
+    keywords:
+        - switch
+        - case
+        - break
+            - takes us out of our code block
+        - default
+            - run if no cases match
+    Structure:
+    switch(expression) {
+        case ... :
+            return;
+            break;
+        case ... :
+            return;
+            break;
+        case ... :
+            return;
+            break;
+        default:
+            return;
+    }
+*/
 
+let officeCharacter = "Michael";
 
+switch (officeCharacter) {
+  case "Michael":
+    console.log("My mind is going a mile an hour.");
+    break;
+  case "Dwight":
+    console.log("Perfectenschlag");
+    break;
+  case "Jim":
+    console.log("Bears. Beets. Battlestar Galactica");
+    break;
+  case "Pam":
+    console.log("Yup");
+    break;
+  default:
+    console.log(`I'm sorry, ${officeCharacter}, but do I know you?`);
+}
 
+// String interpolation: using a variable in a string with backticks, dollar sign, and {}
+let myName = "Kate";
+let bff = "Ben";
+console.log(`My name is ${myName} and my best friendo is ${bff}!`); // YOU HAVE TO RUN SINGLE QUOTES OR ELSE IT WONT WORK!!!!
+console.log("My name is ${myName} and my best friendo is ${bff}!"); // THIS ONE WONT WORK "" INDICATES A NORMIE STRING
+
+let num = 5;
+
+switch (true) {
+    case num < 0 && num > -10:
+        console.log("Case 1 ran.");
+        break;
+    case num > 0: // colon inddicates what belongs to case
+        console.log("Case 2 ran.");
+        break;
+    default:
+        console.log("Default ran, no case worked");
+        break;
+}
