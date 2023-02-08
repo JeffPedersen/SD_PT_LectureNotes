@@ -171,7 +171,7 @@ switch (true) {
 /* 
     Always a If/Else style conditional at minimum
     Structure:
-    expression ? true : false
+    ! "expression ? true : false"
     ;
 */
 
@@ -179,5 +179,33 @@ let expression = true;
 
 expression ? console.log ("Runs true") : console.log ("Runs false");
 
-let newNum = 6;
+let newNum = 6; // Modify number to see a change in output
 newNum > 0 ? console.log("yes, greater than zero") : console.log("No, less than zero");
+
+// as an if/else
+if (newNum > 0) {
+    console.log("yes");
+} else {
+    console.log("no");
+}
+
+// ? Else/If
+let anotherNum = 0; // Modify number to change output
+if (anotherNum == 0) {
+    console.log("Hello");
+} else if (anotherNum > 0) {
+    console.log("Hey there");
+} else {
+    console.log("Goodbye");
+}
+
+anotherNum == 0
+  ? console.log("Hello")
+  : anotherNum > 0
+  ? console.log("hi")
+  : console.log("goodbye again");
+
+let NumOne = 5;
+let NumTwo = 2;
+let value = NumOne + NumTwo > 1 ? NumOne + NumTwo : 0;
+console.log(value)
