@@ -123,3 +123,5 @@ for (bubbles of catArray) { // finds the variable that we want and says "my favo
         console.log ("Not a maine coon... :( ");
     }     
 }
+
+console.log(`The value of two plus two is ${2 + 2}`)
