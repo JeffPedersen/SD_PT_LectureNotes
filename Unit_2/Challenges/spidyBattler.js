@@ -51,10 +51,10 @@ do {
     spidyHP--; // Villain is only hitting for 1
     console.log('Spider-Man HP: ', spidyHP);
     // Make random spidy attack
-    spideyHIT = Math.floor(Math.random() * 3); // random() give 1-2 / * 3 multiply by 3
+    spidyHit = Math.floor(Math.random() * 3); // random() give 1-2 / * 3 multiply by 3
     console.log(`Spider-Man hits ${Villain.baddie} for ${spidyHit} damage!!!!`);
     // Villain HP math and message
-    Villain.hp -= spideyHIT;
+    Villain.hp -= spidyHit;
     console.log("Villain HP: ", Villain.hp);
     if (spidyHP === 0) {
         console.log("Spider-Man fainted")
