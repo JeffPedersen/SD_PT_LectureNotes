@@ -85,3 +85,34 @@ letTest();
 console.log(`let - outside of function/global valu: ${b}`);
 
 // ? Hoisting: JS's default behavior of moving declarations to the top of the current scope (to the top of the current script/function/file)
+
+/* 
+    - JS reads from top to bottom in two passes. Line by line.
+        1st pass:
+            - Made by the compiler. This is where hoisting is initiated.
+            - compiled for execution.
+        2nd pass: 
+            - variables are assigned.
+            - Execution phase
+                - runs any hoisted code.
+
+    JavaScript only hoists declarations, not initializations.
+
+    To avoid bugs, always declare all variables at the beginning of every scope.
+*/
+
+console.log(`before: ${personName}`)
+let personName = "Jeff";
+console.log(`after: ${personName}`)
+
+b();
+function b() {
+    console.log("I'm hoisted");
+}
+b()
+
+//newFunc(); cant run this before you establish it
+let newFunc = () => {
+    console.log("Hoisted")
+}
+newFunc();
