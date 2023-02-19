@@ -45,9 +45,9 @@ console.log("toString method: ", rgb.toString());
     - MUST have a return
 */
 
-let fruits = ["blackberry", "kiwi", "banana", "papaya", "mango"]
+let fruits4 = ["blackberry", "kiwi", "banana", "papaya", "mango"]
 // use filter to remove papaya
-let filteredFruit = fruits.filter(fruit => { // item "fruit" can be anything btw
+let filteredFruit = fruits4.filter(fruit => { // item "fruit" can be anything btw
     let remainingFruit = fruit !== "papaya"; // checks each item, if not papaya returns to remainingFruit 
     console.log(`Remaining fruit: ${remainingFruit}`); // logs what remainingFruit
     return remainingFruit;
@@ -62,14 +62,137 @@ console.log("Includes method: ", otherFruit.includes("p")) // true, Pineapple ha
 console.log("Includes method: ", otherFruit.includes("apple")) // true, Pineapple has "apple"
 
 // .filter with .includes, remove any fruit with "p"
-let fruits = ["blackberry", "kiwi", "banana", "papaya", "mango", "peach"]
-const filterFruit2 = fruits.filter(item => !item.includes("p")); // Case sensitive BTW
+let fruits2 = ["blackberry", "kiwi", "banana", "papaya", "mango", "peach"]
+const filterFruit2 = fruits2.filter(item => !item.includes("p")); // Case sensitive BTW
 console.log(filterFruit2);
 
-const filteredFruitFunction = fruits.filter(eatMango); // references fruits and passes it eatMango function 
-function eatMango(fruit) {
-    return fruit !== "mango";
+let fruits3 = ["blackberry", "kiwi", "banana", "papaya", "mango"]
+const filteredFruitFunction = fruits3.filter(eatMango); // set the filtered array to variable, filter will run eatMango function per item in array 
+function eatMango(item) { // returns true if not mango, false if mango
+    return item !== "mango";
 }
-console.log("filter with function: ", filteredFruitFunction);
+console.log("filter with function: ", filteredFruitFunction); // printing to see final filtered array
 
-//console.log(eatMango("mango")) // true, only returns if what we input is NOT mango
+//? forEach()
+/*
+    Runs 3 arguments:
+        - The value
+        - The index
+        - The array object itself
+    - forEach() helps us iterate over an array performing a function once per element in the array via a callback function.
+    - Is not executed for empty elements 
+    - Does not change original array
+*/
+//------------------------------------------------------------------------------------------------------------------------------
+let newFoodList = ["chocolate", "strawberry", "pizza", "beer"];
+for (let i = 0; i < newFoodList.length; i++) {
+    console.log(newFoodList[i]);
+}
+newFoodList.forEach((item) => console.log("For each method: ", item)); //forEach item it ran a console log on each item in the array
+newFoodList.forEach((item, i) => { 
+    console.log("forEach with Index: ", item, i); //forEach item runs a console.log and assigns each item a number
+})
+newFoodList.forEach(function (item) { //declarative function / same as line 91
+    console.log("Declaration sample: ", item);
+})
+
+
+let newFoodList2 = ["chocolate", "strawberry", "pizza", "beer"];
+// Build a function to console.log item
+// Separating function from forEach, works 
+function displayFoodItem(foodThing) {
+    console.log(`function outside of forEach: ${foodThing}`);
+}
+// Pass the forEach method the function
+newFoodList2.forEach(displayFoodItem);
+//------------------------------------------------------------------------------------------------------------------------------
+//? .map()
+/* 
+    -Like a copy method
+    -Creates a new array from calling a function for every array element
+    -Calls the function once per element in an array
+    -Does not execute the function for empty elements 
+    -Does not change the original array
+*/
+
+//Populated by for loop
+let numArray = [];
+//Populated by using.map on numArray
+let fizzBuzzArray = [];
+for (let x = 0; x <= 99; x++) {  //basic loop of for (x; x; x)
+    numArray.push(x) //take numArray and push our variable x
+}
+//console.log("numArray: ", numArray); //Confirmation that it pushed
+
+//Simple example first
+//numArray.map((x) => fizzBuzzArray.push(x + 5))  // We want to take mapArrays data and map it over to fizzbuzz. +5 to check that fizzBuzz is different
+//console.log("fizzBuzzArray: ", fizzBuzzArray); //Just checking if it map'd correctly
+
+
+// if % by 3 print fizz, if % by 5 print buzz, if % by 3&5 print #(push to fizzBuzzArray)
+numArray.map((x) => {
+    // Use a conditional to check division
+    if (x % 15 === 0) {
+        fizzBuzzArray.push(x);
+    } else if (x % 3 === 0) {
+        fizzBuzzArray.push("Fizz");
+    } else if (x % 5 === 0) {
+        fizzBuzzArray.push("Buzz");
+    }
+});
+//Check if fizzBuzzArray populated
+console.log("fizzBuzzArray: ", fizzBuzzArray);
+
+//? map vs forEach example -----------------------------------------
+let mainArr = [1, 2, 3, 4];
+
+// .forEach returns undefined. performs an action on each item and does NOT return a value
+let forEachEx = mainArr.forEach((z) => z); //forEach does not VVV
+console.log("forEachEX: ",forEachEx);
+// .map returns a new array. performs an action and creates/returns a new value
+//let mapEX = mainArr.map((z) => z + 3); //map gives us a new array by default
+let mapEX = mainArr.map((z) => z + 3);
+console.log("mapEX: ", mapEX);
+
+let secondMap = mapEX.map((z) => z + 5);
+console.log("secondMap: ", secondMap);
+
+//? .find() -------------------------------------------------------
+let tmnt = ["Mikey", "Donnie", "Leo", "Raph", "Splinter", "Shredder", "Baxter"]; 
+let character = "Leo";
+console.log(
+    "Find example 1: ",
+    tmnt.find((c) => c === character) //finds strickly equal to "character"
+);
+
+character = "April";
+console.log(
+    "find Ex 2: ",
+    tmnt.find((c) => c === character)
+);
+
+character = "Splinter"; //find will return true for splinter vs the value for splinter because we check all items via including the index
+console.log(
+    "find Ex 2: ",
+    tmnt.find((c, i) => console.log(
+        "character: ", 
+        c === character,
+        "Index: ",
+        i
+    ))
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
