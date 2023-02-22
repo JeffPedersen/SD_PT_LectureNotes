@@ -76,3 +76,72 @@ const copiedPersons = [...persons];
 persons.push({name: "Anna", age: 29});
 console.log("Persons array: ", persons); //includes anna object in array
 console.log("Copied persons array: ", copiedPersons); //copy does not include anna, created before anna was added
+
+//* Variables within memory
+// first assignment / original assignment
+let x = 10;
+let y = "abc";
+let z = null;
+// reassign to another variable
+let a = x;
+console.log(a); //10
+let b = y;
+console.log(b); // abc
+
+// reassign a and b
+a = 5;
+b = "def";
+console.log(x, y, a, b); // 10 abc 5 def
+
+//? ------------------------------------------------------------------------------------
+
+let arr = [];
+arr.push(1);
+console.log(`arr: ${arr}`); // 1
+
+let reference = [1];
+let refCopy = reference;
+console.log(`refCopy = ${refCopy}`); // 1
+
+reference.push(2); // push adds 2 to the end of the array
+console.log(reference, refCopy); 
+
+refCopy.push(3); // push adds 3 to the end of the array, 
+console.log(reference, refCopy); 
+
+//? ------------------------------------------------------------------------------------
+
+//? Ref syntax
+/* 
+-We can use the spread operator syntax, referred to as 'rest' syntax when working with array destructuring, to package up the REST of the values in the referenced array, and return them as their own array.
+- LEFT SIDE
+
+- This looks exactly like the spread syntax: ...
+- Spread syntax -> expands an array 
+- Rest -> condenses an array
+*/
+
+const fullNameAgain = [
+    "Hakuho",
+    "Sho",
+    "Dr.",
+    {
+      month: 03,
+      date: 22,
+      year: 1973,
+    },
+    2,
+    "test",
+    "4",
+    true,
+    false,
+];
+console.log(fullNameAgain[0]); // [0] grabs first item
+let enhoName = fullNameAgain[0];
+
+// using both array destructuring and rest:
+let [ringName, realName, , , , ...otherInfo] = fullNameAgain // commas SKIP an item
+// let [ringName, realName, ...otherInfo] = fullNameAgain // Notice the comma, if its not there it'll include DR
+console.log(`new ringName: ${ringName}`); // hakuho
+console.log(`new realName:  ${realName}`); // sho
+console.log(`otherInfo:  ${otherInfo}`); // otherInfo:  test,4,true,false
