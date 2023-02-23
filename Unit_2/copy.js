@@ -17,7 +17,8 @@
     }
  */
 
-for (i = 0; i <= 10; i++) { // counts up to 10 in increments of 1
+for (i = 0; i <= 10; i++) {
+  // counts up to 10 in increments of 1
     console.log(i);
 }
 console.log("Finished with the loop");
@@ -44,12 +45,12 @@ for (let i = 0; i < firstName.length; i++) { // looks at each letter of "firstNa
 // 5 o
 
 let sum = 0;
-for (let i = 1; i <= 3; i++) { // i <= 3; is the number of loops it runs
+for (let i = 1; i <= 3; i++) {
     console.log("Before: ", sum);
     sum += i;
-    console.log("After: ", sum);
+    console.log("AFter: ", sum);
 }
-//console.log(sum);
+console.log(sum);
 
 /* 
 ?   For In Loops: Loops thru the properties of an object
@@ -68,16 +69,16 @@ let wrestler = { //object is wrestler
 }
 console.log(wrestler["name"]);  // pulls out the value of the "name" from the object, "name" is the key
 
-for (item in student) { // item is arbitrary variable name to represent our object we want to do something with
+for (item in student) { // item is an *arbitrary* variable name to represent our object we want to do something with
     console.log(item)
     console.log(student[item])
 }
 
-// variable name ofr key can be whatever we want, still runs
+// variable name for key can be whatever we want, still runs
 // for (pizza in student) {
 // console.log(pizza);
 // console.log(student[pizza]);
-//}
+// }
 
 let catArray = [
     "tabby",
@@ -94,18 +95,19 @@ for (cat in catArray) {
     console.log(catArray[cat]);
 }
 
-// ? For of Loops:
+//? For of Loops:
 /* 
-    iterate - an object that has iterable properties (countable properties we can do stuff with)
-
-    Structure:
-    for (variable of iterable) {
+    Iterate - an object that has iterable properties 
+        ?countable properties we can do stuff with
+    
+    !Structure 
+    for (variable of iterable) {  
         ... code to run
     }
 
-    ^variable is any word we choose to use, iterable is the name of any iterable "thing"
+    *variable is any word we choose and iterable is the name of any iterable "thing"
 
-    Can loop over Arrays, String, etc
+    Can loop over arrays, strings, etc
 */
 
 /*  
@@ -115,15 +117,16 @@ for (item of student) { // For of doesn't play well with object
 */
 
 for (cat of catArray) {
-    console.log("FOR OF LOOP: ", cat)
+    console.log("FOR OF LOOP: ", cat); // FOR OF LOOP: and lists each cat
 }
 
 for (bubbles of catArray) { // finds the variable that we want and says "my favorite cat is the"
     if (bubbles === "maine coon") {
-        console.log(`My favorite cat is the ${bubbles}!!!`)
+        console.log(`My fav cat is the ${bubbles}`)
     } else {
-        console.log ("Not a maine coon... :( ");
-    }     
+        console.log("Not a maine coon....:( ")
+    }
 }
 
 console.log(`The value of two plus two is ${2 + 2}`)
+

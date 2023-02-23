@@ -1,41 +1,40 @@
 /* 
-!   Async/Await
-        - Introduced in 2017
-        - Can make any function an async function simply by denoting as such.
-        Keywords:
-            - async
-                - denotes an async function
-            - await
-                - calls a process to "wait" for our results.
-        
-        - Can help us reduce the need for Callback Functions
-        - CANNOT be used in loops!
-        - ALWAYS returns a promise.
+! Async / await   
+    Introduced in 2017
+    Makes any function an asnyc by denoting
+    Keywords
+        Async  
+            -denotes an async function
+        Await  
+            -calls a process to "wait" for results/Input
+
+    Can help reduce the need for callback functions
+    CANNOT be used in loops
+    Always returns a promise 
 */
 
-// Async Function Declaration
+//! Async function declaration
 async function asyncFunctionName() {
-    // code to run
-  }
-  
-  // Async Function Expression
-  let funcExpressionName = async function () {
-    // code block to run
-  };
-  
-  // Async Arrow Function
-  let arrowFuncName = async () => {
-    // code to execute
-  };
-  
-  async function getName() {
-    return "Gandalf";
-  }
-  
-  // console.log(getName());
-  getName().then((name) => console.log(name));
-  
-  /* 
-  ! Await
-      - Tell JS that a promise is being returned and to wait on that result.
-  */
+  // code to run
+}
+
+//! Asnyc function expression
+let funcExpressionName = async function () {
+  // code to run
+};
+
+//! Asnyc arrow function
+let arrowFuncName = async () => {
+  // code to execute
+};
+
+async function getName() {
+  return "You're a lizard, Harry";
+}
+console.log(getName);  //[AsyncFunction: getName]
+getName().then((name) => console.log(name)); //You're a lizard, Harry
+
+//! Await
+//  Tells JS that a promise is being returned and to wait the result
+
+
