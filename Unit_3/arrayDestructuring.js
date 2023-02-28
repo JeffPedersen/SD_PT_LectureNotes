@@ -1,4 +1,4 @@
-//? ArrayDestructuring 
+//! ArrayDestructuring 
 /*
 -Allows us to unpack values from arrays into distinct variables. 
 -Similar syntax to array literals, but the square brackets [] are on the left side of the assignment operator(=)

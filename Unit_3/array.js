@@ -1,5 +1,5 @@
 /* 
-    ?Unit 2: data structures
+    !Unit 2: data structures
     - How we organize our data
     - Utilize arrays and objects and use functions to interact with them
 

@@ -70,7 +70,7 @@ console.log(sum, typeof sum); // something in quote + character is a string
 let anotherOne = 100 + "a hundo";
 console.log(anotherOne, typeof anotherOne);
 
-// Objects can contain many values and value types. These values are stored in properties (pairs of keys/names and vlaues)
+// Objects can contain many values and value types. These values are stored in properties (pairs of keys/names and values)
 
 //    1     2
 let frodo = {
@@ -82,7 +82,7 @@ let frodo = {
 /* 
     1. Variable name of the object
     2. Objects are denoted with the curly braces {}, inside the brackets are the objects properties 
-    3. The keys or name of the proporty
+    3. The keys or name of the property
     4. keys/values pairs are separated with a colon :
     5. The property's keys/value 
 */
