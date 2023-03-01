@@ -48,8 +48,8 @@ const stateAbbreviation = {
 // console.log(stateAbbreviation["hawaii"]);
 // Create a findIT function that will use whatever object(dict) and key term(search) give and return the value if found
 
-function findIt(dict, search) { 
-    return dict[search];
+function findIt(dict, search) { // search can change
+    return dict[search]; // search can change
 }
 
 let stateInUs = findIt(stateAbbreviation, "vermont"); // finds vermont and returns what is next to it
