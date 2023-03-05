@@ -132,7 +132,7 @@ function enterState(newState) {
     } else {
         // have a message if state is not available
         //console.log("Invalid state, gross");
-        throw `Invalid state: ${currentState} to ${newState}`
+        return `Invalid state: ${currentState} to ${newState}`
     }
 }
 // return console.log(currentState); // shows start of green
