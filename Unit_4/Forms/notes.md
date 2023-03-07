@@ -1,9 +1,14 @@
 # Forms
 - `<form>` groups input fields together 
 - `on submit` will gather data from the input field and pass it on
-- `xxx`
-- `xxx`
-- `xxx`
+- `methods` 
+    - types: C.R.U.D
+        - POST (Create)
+        - Get (Read)
+        - PUT (Update)
+        - DELETE
+    - Part of HTTP structure in how we pass data
+    - When a form is submitted, it automatically refreshes our browser
 
 
 ## Some Attributes

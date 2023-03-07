@@ -8,30 +8,33 @@
 
 let grades = {
     midterm: {
-      grade: 3.3,
-      weight: 1
+      grade: "3.3",
+      weight: "1",
     },
     project: {
-      grade: 4.0,    
-      weight: 1
+      grade: "4.0",    
+      weight: "1",
     },
     final: {
-      grade: 3.2,
-      weight: 2
+      grade: "3.2",
+      weight: "2",
     }
   }
   
   function gpa(object) { // object is the parameter
-    let gradesToWeight = object.keys(object);
+    let gradesToWeight = Object.keys(object);
     let gradeSum = 0;
     let weightSum = 0;
     
-    gradesToWeight.forEach(key) {
-        gradeSum += object[key] * key;
-        weightSum += key;
-    }
-    const weightedGrade = gradeSum / weightSum;
+    gradesToWeight.forEach((key) => {
+        gradeSum += object[key] * parseInt(key);
+        weightSum += parseInt(key);
+    });
+    
+    let  weightedGrade = gradeSum / weightSum;
+    console.log(weightedGrade);
   }
+  
   
   //! psuedocode
   // establish gradesToWeigh

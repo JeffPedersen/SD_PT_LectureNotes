@@ -19,6 +19,7 @@
 
 // Ex: Create an item class to define things sold in a store
 //? As you enter this.key = parameter the above parameter turn bold
+// 1    2
 class Item {
 //      3               4
     constructor(name, desc, price) {
@@ -32,9 +33,9 @@ class Item {
 /* 
     1. Class keyword that denotes(tells JS) what "type" of function we are building
         - classes are a function
-    2. Class name: Note class names are done in Pascal Casing to help determine what type of function we are referencing in our code
+    2. Class name: Note class names are done in Pascal Casing (Starts uppercase and subsequent word capitalized)
         - pascal case: TotalValue, FirstThingFirst
-    3. Constructor keyword: is activated when we create a new object. Builds what sort of keys and values will be associated with out objects
+    3. Constructor keyword: is activated/instantiate when we create a new object. Builds what sort of keys and values will be associated with out objects
         - building an object from scratch
     4. Parameters of our constructed object. Establish the values of our new object.
     5. This keyword - Refers to "this" specific object being created
