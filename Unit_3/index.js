@@ -20,16 +20,10 @@ class ClassInventory { // makes objects
           this.loc = location;
       }
 }
-let chestKey = new ClassInventory();
-chestKey.name = "Chest Key";
-chestKey.loc = "Garden";
-let sword = new ClassInventory();
-sword.name = "Sword";
-sword.loc = "Barracks";
-let gold = new ClassInventory();
-gold.name = "Gold";
-gold.loc = "Treasury";
-//console.log(gold); //test to see if class applies correctly
+let chestKey = new ClassInventory("Chest Key", "Garden");
+let sword = new ClassInventory("Sword", "Barracks");
+let gold = new ClassInventory("Gold", "Treasury");
+//console.log(chestKey); //test to see if class applies correctly
 
 class ClassRoom { // makes objects 
       constructor(name, desc) {
@@ -37,26 +31,26 @@ class ClassRoom { // makes objects
           this.description = desc;
       }
 }
-let treasury = new ClassRoom();
-treasury.name = "Treasury";
-treasury.desc = "Treasury desc";
-let garden = new ClassRoom();
-garden.name = "Garden";
-garden.desc = "Garden desc";
-let barracks = new ClassRoom();
-barracks.name = "Barracks";
-barracks.desc = "Barracks desc";
-let hall = new ClassRoom();
-hall.name = "Hall";
-hall.desc = "Hall desc";
+let treasury = new ClassRoom("Treasury", "Treasury desc");
+let garden = new ClassRoom("Garden", "Garden desc");
+let barracks = new ClassRoom("Barracks", "Barracks desc");
+let hall = new ClassRoom("Hall", "Hall desc");
 //console.log(treasury); //test to see if class applies correctly
 
-let state = { // state machine template from lecture
-  "Hall": ["Barracks", "Garden", "Treasury"], // Hall can go to all three rooms
-  Garden: ["Hall"], // can only return to hall 
-  Treasury: ["Hall"], // can only return to hall 
-  Barracks: ["Hall"] // can only return to hall 
+let lookupTable = {
+  Hall: hall, //* linking object value to key 
+  Garden: garden,
+  Treasury: treasury, 
+  Barracks: barracks, 
 }
+
+let state = { // state machine template from lecture
+  Hall: ["Barracks", "Garden", "Treasury"], // Hall can go to all three rooms
+  Garden: ["Hall", "Garden"], // can only return to hall 
+  Treasury: ["Hall", "Treasury"], // can only return to hall 
+  Barracks: ["Hall", "Barracks"] // can only return to hall 
+}
+
 let currentState = "Hall" // function to handle transitions between states
 function enterState(newState) { 
   let validTransitions = state[currentState];
@@ -68,63 +62,71 @@ function enterState(newState) {
   }
 }
 
-let hasRanOnce = false;
+
 // Intro
-console.log("\nYou enter the ruins of the palace of Persepolis");
-console.log(`\nOnce a great palace and administrative hub for the Persian Empire. Now lies in ruins. You can still see the finely carved stone reliefs which seem to cover every available inch of space`); // This is above to not clutter the dialog
 
 start();
-
+// nest function to actually start the game
+// this will help with recalling back to main room
+// this will be the looping part
 async function start() {
+    console.log("\nYou enter the ruins of the palace of Persepolis");
+    console.log(`\nOnce a great palace and administrative hub for the Persian Empire. Now lies in ruins. You can still see the finely carved stone reliefs which seem to cover every available inch of space`);
     console.log("\nYou enter into the main room... the Hall");
     console.log("\nYou see three doors");
-    let moveRoom = await ask(`\nDo you enter the (Barracks) (Garden) (Treasury): `);
-    if (moveRoom == "Treasury") {
-      enterState("Treasury");
-      console.log(`\nYou Look around`);
-      console.log(`\nIt has been looted except for a single large locked chest`);
-      //! if statement to check player inventory array and check for key
-      let hasKey = await ask(`Use the key you have to open the chest? (Yes)?`);
-      if (hasKey == "Yes") {
-        console.log(`\nUntouched by looters a chest of gold is all yours`)
-        //! ... call inventory function to add gold to inventory
-        return start();//! how to return and prompt moveRoom again
-      }
-    } else if (moveRoom == "Barracks") {
-      enterState("Barracks"); 
-      console.log(`\nYou Look around`);
-      console.log(`\nYou notice a sword`);
-      let pickUpSword = await ask(`\nPick up the sword? (Yes) or (No)`);
-      if (pickUpSword == "Yes") {
-        //! call function to add to inventory
-        return start();//! how to return and prompt moveRoom again
-      } else {
-        return start();//! how to return and prompt moveRoom again
-      }
-    } else if (moveRoom == "Garden") {
-        enterState("Garden"); 
-        console.log(`\nYou see overgrown plants and trees`);
-        console.log(`\nYou see something inside the hollow of a particularly ominous tree`);
-        let pickKey = await ask(`Do you reach your hand in the tree (Yes) or (No)`)
-        if (pickKey == "Yes") {
-          //! call function to add to inventory
-        } else if (pickKey == "No") {
-          console.log(`\nI dont blame you, probably would have lost your hand`)
-          let returnNow = await ask(`Return to Hall?`);
-          if (returnNow == "Yes") {
-            enterState("Hall");
-            return start();//! how to return and prompt moveRoom again
-          } else {
-            console.log(`\nYou take in the view for a while before returning from the door you came`);
-            return start();//! how to return and prompt moveRoom again
-          }
+    gameStart();
+    async function gameStart() {
+      let moveRoom = await ask(`\nDo you enter the (Barracks) (Garden) (Treasury): `);
+      if (moveRoom == "Treasury") {
+        enterState("Treasury");
+        console.log(`\nYou Look around`);
+        console.log(`\nIt has been looted except for a single large locked chest`);
+        //! if statement to check player inventory array and check for key
+        let hasKey = await ask(`Use the key you have to open the chest? (Yes)?`);
+        if (hasKey == "Yes") {
+          console.log(`\nUntouched by looters a chest of gold is all yours`)
+          //! ... call inventory function to add gold to inventory
+          gameStart();
+        } else {
+          gameStart();
         }
-    } else {
-      console.log(`I am not sure of that command`);
-      return start();
-    }
-    
-  process.exit();
+      } else if (moveRoom == "Barracks") {
+        enterState("Barracks"); 
+        console.log(`\nYou Look around`);
+        console.log(`\nYou notice a sword`);
+        let pickUpSword = await ask(`\nPick up the sword? (Yes) or (No)`);
+        if (pickUpSword == "Yes") {
+          sword.loc = "playerInventory";
+          console.log(`\n You pick up the sword and return to the hall`);
+          gameStart();
+        } else {
+          gameStart();
+        }
+      } else if (moveRoom == "Garden") {
+          enterState("Garden"); 
+          console.log(`\nYou see overgrown plants and trees`);
+          console.log(`\nYou see something inside the hollow of a particularly ominous tree`);
+          let pickKey = await ask(`Do you reach your hand in the tree (Yes) or (No)`)
+          if (pickKey == "Yes") {
+            //! call function to add to inventory
+          } else if (pickKey == "No") {
+            console.log(`\nI dont blame you, probably would have lost your hand`)
+            let returnNow = await ask(`Return to Hall?`);
+            if (returnNow == "Yes") {
+              enterState("Hall");
+              gameStart();
+            } else {
+              console.log(`\nYou take in the view for a while before returning from the door you came`);
+              gameStart();
+            }
+          }
+      } else {
+        console.log(`I am not sure of that command`);
+        gameStart();
+      }
+      //process.exit();
+    }  
+  
 }
 
 function enterState(newState) { 
@@ -139,7 +141,7 @@ function enterState(newState) {
 
 //! needs work
 function moveItem(source, destination, item) { // making function for repetition
-  source.push(destination[item]);
+  splice(0, 1, "black"); // targets first item 1 to remove, and "to add new")
   delete source[item];
 }
 
@@ -183,5 +185,9 @@ player
 3-5 sick/class
 3-6 replace object array with classes
     finish if else flow
+3-7 lookupTable correctly linked
+    introduced gameStart to successfully transition rooms
+    splice to function?
+3-8 
 */
 
