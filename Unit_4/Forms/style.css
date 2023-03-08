@@ -4,7 +4,8 @@ body {
     height: 100vh;
     margin: 0;
     overflow-y: hidden;
-    background-color: gainsboro;
+    background-color: #faf5f5;
+    background-image: url("https://www.transparenttextures.com/patterns/cartographer.png");
 }
 
 /* HEADER */

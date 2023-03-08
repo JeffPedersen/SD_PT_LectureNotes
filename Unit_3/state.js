@@ -86,6 +86,9 @@ const howIsKid = (state) => kidFeelsTable[state] || "They're Sleeping...";
 console.log(howIsKid("Happy"));
 console.log(howIsKid());
 
+//! Lookup table and state machine BFF
+//! How lookup tables and state machines interact is KEYS need to be exact match
+
 /* //! State Machine ---------------------------------------------
     - reads a set of inputs and changes to a different state based on those inputs
     - mathematical model of computation, usually used to design an algorithms
