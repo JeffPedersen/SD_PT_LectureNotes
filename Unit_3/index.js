@@ -23,7 +23,7 @@ class ClassInventory { // makes objects
 let chestKey = new ClassInventory("Chest Key", "Garden");
 let sword = new ClassInventory("Sword", "Barracks");
 let gold = new ClassInventory("Gold", "Treasury");
-//console.log(chestKey); //test to see if class applies correctly
+console.log(chestKey); //test to see if class applies correctly
 
 class ClassRoom { // makes objects 
       constructor(name, desc) {
@@ -55,16 +55,19 @@ let currentState = "Hall" // function to handle transitions between states
 function enterState(newState) { 
   let validTransitions = state[currentState];
   if (validTransitions.includes(newState)) {
-    currentState = newState;
+    return newState;
     console.log(`\nWe move into the ${currentState}`); // logs when moves occur
   } else {
     throw `Unable to move from ${currentState} to ${newState}`
   }
 }
 
-
-// Intro
-
+//! TODO
+// while (answer !== 'exit') {
+//   answer = await ask('>_ ')
+// }
+// press i for inventory
+// drop inventory
 start();
 // nest function to actually start the game
 // this will help with recalling back to main room
@@ -74,7 +77,9 @@ async function start() {
     console.log(`\nOnce a great palace and administrative hub for the Persian Empire. Now lies in ruins. You can still see the finely carved stone reliefs which seem to cover every available inch of space`);
     console.log("\nYou enter into the main room... the Hall");
     console.log("\nYou see three doors");
+    let currentState = enterState(moveRoom);
     gameStart();
+    
     async function gameStart() {
       let moveRoom = await ask(`\nDo you enter the (Barracks) (Garden) (Treasury): `);
       if (moveRoom == "Treasury") {
@@ -82,7 +87,7 @@ async function start() {
         console.log(`\nYou Look around`);
         console.log(`\nIt has been looted except for a single large locked chest`);
         //! if statement to check player inventory array and check for key
-        let hasKey = await ask(`Use the key you have to open the chest? (Yes)?`);
+        let hasKey = await ask(`Use the key you have to open the chest? (Yes)?`); // this will act as my "immovable object" in the readme prompt
         if (hasKey == "Yes") {
           console.log(`\nUntouched by looters a chest of gold is all yours`)
           //! ... call inventory function to add gold to inventory
@@ -120,6 +125,9 @@ async function start() {
               gameStart();
             }
           }
+      } else if (moveRoom == "Exit") {
+        console.log(`You exit the palace of Persepolis`); 
+        process.exit();
       } else {
         console.log(`I am not sure of that command`);
         gameStart();
@@ -129,15 +137,7 @@ async function start() {
   
 }
 
-function enterState(newState) { 
-  let validTransitions = state[currentState];
-  if (validTransitions.includes(newState)) {
-    currentState = newState;
-    console.log(`\nYou are in the ${currentState}`);
-  } else {
-    throw `Unable to move from ${currentState} to ${newState}`
-  }
-}
+
 
 //! needs work
 function moveItem(source, destination, item) { // making function for repetition
