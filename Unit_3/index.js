@@ -51,7 +51,7 @@ let state = { // state machine template from lecture
   Barracks: ["Hall", "Barracks"] // can only return to hall 
 }
 
-let currentState = "Hall" // function to handle transitions between states
+//let currentState = "Hall" // function to handle transitions between states
 function enterState(newState) { 
   let validTransitions = state[currentState];
   if (validTransitions.includes(newState)) {
@@ -77,13 +77,19 @@ async function start() {
     console.log(`\nOnce a great palace and administrative hub for the Persian Empire. Now lies in ruins. You can still see the finely carved stone reliefs which seem to cover every available inch of space`);
     console.log("\nYou enter into the main room... the Hall");
     console.log("\nYou see three doors");
-    let currentState = enterState(moveRoom);
+    
     gameStart();
     
     async function gameStart() {
       let moveRoom = await ask(`\nDo you enter the (Barracks) (Garden) (Treasury): `);
+      try { // OH BOY A FANCY NEW STATEMENT
+        let currentState = enterState(moveRoom);
+      } catch {
+        console.log(`Whoops!`);
+      }
+      
       if (moveRoom == "Treasury") {
-        enterState("Treasury");
+        //enterState("Treasury");
         console.log(`\nYou Look around`);
         console.log(`\nIt has been looted except for a single large locked chest`);
         //! if statement to check player inventory array and check for key
@@ -96,7 +102,7 @@ async function start() {
           gameStart();
         }
       } else if (moveRoom == "Barracks") {
-        enterState("Barracks"); 
+        //enterState("Barracks"); 
         console.log(`\nYou Look around`);
         console.log(`\nYou notice a sword`);
         let pickUpSword = await ask(`\nPick up the sword? (Yes) or (No)`);
@@ -108,7 +114,7 @@ async function start() {
           gameStart();
         }
       } else if (moveRoom == "Garden") {
-          enterState("Garden"); 
+          //enterState("Garden"); 
           console.log(`\nYou see overgrown plants and trees`);
           console.log(`\nYou see something inside the hollow of a particularly ominous tree`);
           let pickKey = await ask(`Do you reach your hand in the tree (Yes) or (No)`)
