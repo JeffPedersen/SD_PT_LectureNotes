@@ -14,28 +14,31 @@ function ask(questionText) {
 let whichRoom = []; 
 let playerInventory = []; // player starts with empty array
 
-class ClassInventory { // makes objects 
+class ClassLocation { // makes objects 
+  constructor(name, desc, inv) {
+      this.name = name;
+      this.description = desc;
+      this.inventory = inv;
+
+  } // by moving ClassLocation above I can place the room variables in my InventoryItems
+}
+let treasury = new ClassLocation("Treasury", "Treasury desc", "gold"); 
+let garden = new ClassLocation("Garden", "Garden desc", "key");
+let barracks = new ClassLocation("Barracks", "Barracks desc", "sword");
+let hall = new ClassLocation("Hall", "Hall desc");
+//let inventory = new ClassLocation("Inventory", "Whats in your pockets");
+console.log(treasury.inventory); //test to see if class applies correctly
+
+class InventoryItem { // makes objects 
       constructor(name, location) {
           this.name = name;
           this.loc = location;
       }
 }
-let chestKey = new ClassInventory("Chest Key", "Garden");
-let sword = new ClassInventory("Sword", "Barracks");
-let gold = new ClassInventory("Gold", "Treasury");
-console.log(chestKey); //test to see if class applies correctly
-
-class ClassRoom { // makes objects 
-      constructor(name, desc) {
-          this.name = name;
-          this.description = desc;
-      }
-}
-let treasury = new ClassRoom("Treasury", "Treasury desc");
-let garden = new ClassRoom("Garden", "Garden desc");
-let barracks = new ClassRoom("Barracks", "Barracks desc");
-let hall = new ClassRoom("Hall", "Hall desc");
-//console.log(treasury); //test to see if class applies correctly
+let chestKey = new InventoryItem("Chest Key", garden);
+let sword = new InventoryItem("Sword", barracks);
+let gold = new InventoryItem("Gold", treasury);
+console.log(chestKey.loc); //test to see if class applies correctly
 
 let lookupTable = {
   Hall: hall, //* linking object value to key 
@@ -51,7 +54,6 @@ let state = { // state machine template from lecture
   Barracks: ["Hall", "Barracks"] // can only return to hall 
 }
 
-//let currentState = "Hall" // function to handle transitions between states
 function enterState(newState) { 
   let validTransitions = state[currentState];
   if (validTransitions.includes(newState)) {
@@ -63,15 +65,9 @@ function enterState(newState) {
 }
 
 //! TODO
-// while (answer !== 'exit') {
-//   answer = await ask('>_ ')
-// }
 // press i for inventory
 // drop inventory
 start();
-// nest function to actually start the game
-// this will help with recalling back to main room
-// this will be the looping part
 async function start() {
     console.log("\nYou enter the ruins of the palace of Persepolis");
     console.log(`\nOnce a great palace and administrative hub for the Persian Empire. Now lies in ruins. You can still see the finely carved stone reliefs which seem to cover every available inch of space`);
@@ -89,42 +85,48 @@ async function start() {
       }
       
       if (moveRoom == "Treasury") {
-        //enterState("Treasury");
         console.log(`\nYou Look around`);
         console.log(`\nIt has been looted except for a single large locked chest`);
-        //! if statement to check player inventory array and check for key
-        let hasKey = await ask(`Use the key you have to open the chest? (Yes)?`); // this will act as my "immovable object" in the readme prompt
+        let hasKey = await ask(`\nDo you have a key you have to open the chest? (Yes) or (No)?`); // this will act as my "immovable object" in the readme prompt
         if (hasKey == "Yes") {
-          console.log(`\nUntouched by looters a chest of gold is all yours`)
-          //! ... call inventory function to add gold to inventory
-          gameStart();
+          console.log(`\nYou check your inventory`);
+            if (playerInventory.includes("key")) {
+              console.log(`\nUntouched by looters a chest of ${treasury.inventory} is all yours`);
+              console.log(`\nYou fill your pockets full of ${treasury.inventory} and return thru the door you came`);
+              playerInventory.push(treasury.inventory);
+              gameStart();
+            } else {
+              console.log(`\nYou lack the key, you're inventory currently contains... ${playerInventory} better keep searching`)
+              gameStart();
+            }
         } else {
           gameStart();
         }
       } else if (moveRoom == "Barracks") {
-        //enterState("Barracks"); 
         console.log(`\nYou Look around`);
         console.log(`\nYou notice a sword`);
         let pickUpSword = await ask(`\nPick up the sword? (Yes) or (No)`);
         if (pickUpSword == "Yes") {
-          sword.loc = "playerInventory";
-          console.log(`\n You pick up the sword and return to the hall`);
+          playerInventory.push(barracks.inventory);
+          console.log(`\n Inventory is contains ${playerInventory}, now back to the hall`);
           gameStart();
         } else {
           gameStart();
         }
       } else if (moveRoom == "Garden") {
-          //enterState("Garden"); 
           console.log(`\nYou see overgrown plants and trees`);
           console.log(`\nYou see something inside the hollow of a particularly ominous tree`);
-          let pickKey = await ask(`Do you reach your hand in the tree (Yes) or (No)`)
+          let pickKey = await ask(`\nDo you reach your hand in the tree (Yes) or (No)`);
           if (pickKey == "Yes") {
-            //! call function to add to inventory
+            console.log(`\nFortune favors the bold, you pick out a ${garden.inventory}`);
+            playerInventory.push(garden.inventory);
+            console.log(`\nInventory is contains ${playerInventory}, now back to the hall`);
+            gameStart();
           } else if (pickKey == "No") {
             console.log(`\nI dont blame you, probably would have lost your hand`)
-            let returnNow = await ask(`Return to Hall?`);
+            let returnNow = await ask(`\nReturn to Hall?`);
             if (returnNow == "Yes") {
-              enterState("Hall");
+              // enterState("Hall");
               gameStart();
             } else {
               console.log(`\nYou take in the view for a while before returning from the door you came`);
@@ -132,10 +134,10 @@ async function start() {
             }
           }
       } else if (moveRoom == "Exit") {
-        console.log(`You exit the palace of Persepolis`); 
+        console.log(`\nYou exit the palace of Persepolis`); 
         process.exit();
       } else {
-        console.log(`I am not sure of that command`);
+        console.log(`\nI am not sure of that command`);
         gameStart();
       }
       //process.exit();
@@ -193,7 +195,7 @@ player
     finish if else flow
 3-7 lookupTable correctly linked
     introduced gameStart to successfully transition rooms
-    splice to function?
+    TRY CATCH
 3-8 
 */
 
