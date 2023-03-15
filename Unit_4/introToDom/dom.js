@@ -182,7 +182,7 @@ let btn = document.getElementById(`submit`); // grabs/creates reference to the b
 let btnNode = document.getElementsByTagName(`button`);
 //console.log(btnNode);
 
-// Diretly adding and testing the event listener method
+// Directly adding and testing the event listener method
 //btn.addEventListener("click", (event) => {
 //    console.log(event);
 //    console.log("I clicked the button")

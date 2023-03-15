@@ -1,0 +1,37 @@
+body {
+    margin: 0;
+    height: 100vh;
+    padding-top: 6rem;
+    /* Img from https://unsplash.com/ */
+    background-image: url('https://vignette2.wikia.nocookie.net/ironchef/images/d/dc/Cover.jpg/revision/latest?cb=20150730034343');
+    background-size: cover;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    margin: 0;
+    z-index: 1;
+    
+}
+.random-card {
+    display: flex;
+    height: 45vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    text-align: center;
+}
+
+/* Display Cards */
+#kept-cards {
+    margin: 2rem 2rem;
+    background-color: rgba(255,255,255,.75);
+}
+
+p {
+    text-align: center;
+}
