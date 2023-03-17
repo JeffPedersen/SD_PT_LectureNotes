@@ -11,19 +11,26 @@
 const url = "https://api.spoonacular.com/recipes/random";
 const apiKey = "a5128b4e07f4440da62bc28a18f38bef"
 let buildURL = `${url}/?apiKey=${apiKey}`;
+let storedRecipes = [];
 // DOM elements
 const searchForm = document.querySelector("#search-form") // links the button "search-form" 
 
+// Function to properly append children/elements
+const removeElements = (element) => {
+    while(element.firstChild) {
+        element.removeChild(element.firstChild);
+    }
+};
+
 // Build function for displaying random recipe single card
 const displayRandomCard = recipe => { // expressive function
-    console.log(recipe); // logs to ensure our fetch is working
+    //console.log(recipe); // logs to ensure our fetch is working
     const randomCard = document.querySelector(".random-card");
 
     // Replaces cards instead of them stacking up
-    while(randomCard.firstChild) { 
-        randomCard.removeChild(randomCard.firstChild)
-    }
+    removeElements(randomCard);
 
+    // Will replace cards 
     //* Create Elements
     let card = document.createElement('div');
     let img = document.createElement('img');
@@ -42,6 +49,12 @@ const displayRandomCard = recipe => { // expressive function
     title.textContent = recipe.title;
     btn.className = 'btn btn-success';
     btn.textContent = "Add Recipe";
+    btn.onclick = () => {
+        // when thebutton is clicked: push the recipie object to the stored recipie array
+        storedRecipes.push(recipe);
+        // Run the display stored recipe function
+        saveRecipeTable();
+    };
 
     //* Attach Elements
     body.appendChild(title);
@@ -51,10 +64,53 @@ const displayRandomCard = recipe => { // expressive function
     card.appendChild(body);
 
     randomCard.appendChild(card);
-
-}
+};
 
 // Build function for our saved recipe
+const saveRecipeTable = () => {
+    //console.log("Saved the recipe func: array - ", storedRecipes);
+
+    let keptCards = document.getElementById("kept-cards");
+
+    removeElements(keptCards);
+
+    storedRecipes.map((recipeObj) => {
+
+    // Create Elements
+    let div = document.createElement("div");
+    let card = document.createElement("div");
+    let img = document.createElement("img");
+    let cBody = document.createElement("div");
+    let cTitle = document.createElement("h5");
+    let p = document.createElement("p");
+    let a = document.createElement("a");
+
+    // Assign attributes
+    div.className = "col";
+    card.className = "card";
+    img.className = "card-img-top";
+    img.src = recipeObj.img;
+    img.alt = recipeObj.title;
+    cBody.className = "card-body";
+    cTitle.className = "card-title";
+    cTitle.textContent = recipeObj.title;
+    p.className = "card-text";
+    a.href = recipeObj.src;
+    a.target = "_blank";
+    a.textContent = "Link to Recipe";
+
+    // Append 
+    p.appendChild(a);
+    cBody.appendChild(cTitle);
+    cBody.appendChild(p);
+    card.appendChild(img);
+    card.appendChild(cBody);
+    div.appendChild(card);
+
+    keptCards.appendChild(div);
+    });
+
+};
 
 // Event listener
 searchForm.addEventListener("submit", (e) => { // e for event
@@ -71,8 +127,6 @@ fetch(buildURL)
             title: recipe.title,
             img: recipe.image,
             src: recipe.sourceUrl,
-            vegan: recipe.vegan,
-            vegetarian: recipe.vegetarian,
         };
         displayRandomCard(obj); // pass our new object as an argument to display func
     }) // takes that data and logs it
