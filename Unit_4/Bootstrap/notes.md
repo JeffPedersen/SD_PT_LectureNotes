@@ -18,7 +18,7 @@ Bonus:
 - [x] Create Base HTML, CSS, and JS files
 - [x] Connect all three
 - [x] Style CSS
-- [ ] Find BS components and add to HTML
+- [x] Find BS components and add to HTML
 - [ ] sign up for / look for API
 - [ ] fetch random recipe
 - [ ] use JS to dom manipulate create the bootstrap card

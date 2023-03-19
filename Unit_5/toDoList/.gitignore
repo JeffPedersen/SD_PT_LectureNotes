@@ -1,0 +1,4 @@
+# Files here will not be pushed to github
+/node_modules 
+
+# When cloning down a project that ignores items: run the command "npm install" to aquire all files needed/dependancies

@@ -72,11 +72,13 @@ The Flow in Pictures:
 
 - To install Express we run the command: `npm i express`
 - Node Package Manager(npm) install(i) express
+- Brings in our node_modules and package-lock.json
 
 3. We will create a file within our project (the traditional way in VSC) titled: `.gitignore`
 
 - In the gitignore file we will add: `/node_modules`
 - This tells our local repository to ignore the node_modules folder when we push and backup our code to GitHub
+- When cloning down a project that ignores items: run the command "npm install" to acquire all files needed/dependencies
 
 ---
 
