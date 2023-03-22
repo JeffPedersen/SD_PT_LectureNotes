@@ -9,11 +9,19 @@ const PORT = 4000;
 //? Create a variable that imports the practice controller (gives app.js access)
 const practiceController = require(`./controller/practice.controller`)
 
+//? Provide us access to use JSON within our routes
+// call on our app var, use the .use() method to tell our app express.json() -which means use json pleas express
+app.use(express.json());
+
+
+
+
+
 //? Use a method called .use(), this points our express app to where it should go
 // Call the app var, then use the .use() method, specify using express to target the public folder
     // When a file is not specified, JS always defaults to seeking an index file.
 
-app.use(express.static(`${__dirname}/public`));
+app.use(express.static(`${__dirname}/public`)); // tell it to automatically render a static HTML page at what is in /public
 // __dirname - node way for us to choose directory name
 console.log(`pathday: `, __dirname); // route us to the public folder
 
@@ -23,7 +31,7 @@ console.log(`pathday: `, __dirname); // route us to the public folder
     Any traffic coming in that has "practice" after localhost:4000 will route to practice.controller.js.
     ex: localhost:4000/practice
 */
-app.use(`/practice`, practiceController);
+app.use(`/practice`, practiceController); // used to route to different controllers
 
 
 //? Create a method that "listens" for us starting our application 
@@ -34,5 +42,5 @@ app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
 
-// To start the server, in terminal at the proj directory run command "nodemon"
+//! To start the server, in terminal at the proj directory run command "nodemon"
 

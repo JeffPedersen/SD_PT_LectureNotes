@@ -93,3 +93,21 @@ The Flow in Pictures:
 ![A simple flow image.](./assets/Software%20Flow.png)
 
 <!-- ![A simple flow image.](./assets/Software%20Flow.png) -->
+
+## API vs. Server
+
+We've talked about APIs and Servers in a general sense a lot together.
+To be clear:
+
+- An API and the Server are two different things
+- An API is an Application Programming Interface, which is a way to provide information for other applications (communication among applications, ex. the front end web page can communicate with the server).
+- An API provides access to the server.
+- A server is an application that's locally saved in your system, even a physical device.
+https://github.com/burlingtoncodeacademy-students/PT_SD_January23_LectureNotes/blob/main/Unit_5/GeneralNotes/assets/rest-api-model.png
+https://github.com/burlingtoncodeacademy-students/PT_SD_January23_LectureNotes/blob/main/Unit_5/GeneralNotes/assets/API.png
+
+### Visual Examples:
+
+![Example 1](./assets/rest-api-model.png)
+
+![Example 2](./assets/API.png)

@@ -17,18 +17,44 @@ router.get(`/hello-world`, (req, res) => { // req=request, res=response
 });
 
 
+
+
+
+
 /*
 !   Challenge
     - [x] Request Type: POST
     - [x] Endpoint: "greeting"
     - [x] Send: "Good Afternoon!"
-    - [ ] Test: Postman
+    - [x] Test: Postman
         * hint: GET should be POST  
 */
 router.post('/greeting', (req, res) => {
     // add a status code for us to report
     // .status (200)
     res.send('Good Afternoon');
+});
+
+//? Goal: write a route that will pull data from JSON
+// http://localhost:4000/practice/json
+router.post('/json', (request, response) => {
+    // This console log will be printed in VScode terminal that is running the server
+    console.log(request.body); // if you get a request, show me the contents
+    // Make a way to print a response in postman using destructuring
+    const { name } = request.body; // destructuring 
+    response.status(200).send(`I said ${name}`);
+})
+
+//? Create a "wildcard" route to patch any bad routing 
+router.get("*", (req, res) => {
+    /* 
+        - "*": accounts for a "wild card" or anything that hasn't been defined.
+        - Provide a clean response back to the user.
+    */
+    
+    res
+        .status(404)
+        .send(`<img src="https://http.cat/404" alt="status code 404"/>`);
 });
 
 

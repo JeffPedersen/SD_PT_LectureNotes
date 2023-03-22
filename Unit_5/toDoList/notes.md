@@ -36,16 +36,18 @@ We are going to set up a controller folder and make our first controller file ca
 
 Sending a status code with a response is good manners for both the user and dev
 
-### Creating a collection in postman
-Collection button is at the top right of the left sidebar
+## Postman
+- Set Methods w/dropdown to the left of url bar
+  - GET / POST / PUT / DELETE depending on route
+  - Body, tab label under the url
+    - raw (select the raw value radio button)
+    - JSON (blue dropdown to the right of the radio)
+    - Make a JSON object (in the body area)
 
-After clicking collections we can create a new collection with the "+", our collection is like a folder for our API requests. We can rename/etc. by right clicking the three dots on the collection name
-- We can right click the collection name to add request
-- we can then name the request and save it for reference later
-- Cmd + S or floppy disk will save the request to the collection
+## Preparing our server to handle JSON objects
+In our `app.js` we need to have this line of code:
+```js
+app.use(express.json());
+```
+This provides us access JSON files throughout our routes.
 
-### Setting the method in Postman
-
-To set methods in Postman
-  - In the top left of the request, the dropdown in front of the url needs to change to the method
-  - GET / POST / PUT / DELETE
