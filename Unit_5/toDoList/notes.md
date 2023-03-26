@@ -42,7 +42,7 @@ Sending a status code with a response is good manners for both the user and dev
   - Body, tab label under the url
     - raw (select the raw value radio button)
     - JSON (blue dropdown to the right of the radio)
-    - Make a JSON object (in the body area)
+    - Make a JSON object (in the body area)w
 
 ## Preparing our server to handle JSON objects
 In our `app.js` we need to have this line of code:
@@ -50,4 +50,23 @@ In our `app.js` we need to have this line of code:
 app.use(express.json());
 ```
 This provides us access JSON files throughout our routes.
+
+## MVC
+- Stands for Model View Controller
+- Architecture pattern (structure in which they are coded) that helps our Separation of Concerns
+- Model: Database schematic, the blueprint for our data (we dictate what created data looks like/it's data)
+- View: browser, Postman, etc. (what the users see)
+  - Application that interface with the server.
+- Controller: Part of the server application which handles logic. (How we build our logic within the server, we code and create what routes can be used and what they do.)
+
+----
+
+## Middleware 
+- A function that accesses the request and response
+- Has a call stack
+  - request
+  - response
+  - next 
+
+
 
