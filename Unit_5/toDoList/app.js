@@ -8,10 +8,12 @@ const app = express(); // simple our method calls
 // Server port w/in localhost. Using "all caps" indicated a general variable
 const PORT = 4000;
 
+// -----------------------Required file Paths-------------------------
 //? Create a variable that imports the practice controller (gives app.js access)
 const practiceController = require(`./controller/practice.controller`)
 
 const auth = require("./controller/auth.controller");
+const routes = require("./controller/routes.controller")
 // Importing the auth controller routes for the app to reference 
 const { logTime } = require("./helpers");
 // require in the index.js form helpers(./helpers) w/ object destructuring
@@ -52,6 +54,10 @@ app.use(`/practice`, practiceController); // used to route to different controll
 
 // Building route to auth controller: http://localhost:4000/todo
 app.use("/todo", auth);
+
+// Route to routes controller: http://localhost:4000/routes
+app.use("/routes", routes);
+
 
 
 //? Create a method that "listens" for us starting our application 
