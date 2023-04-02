@@ -69,4 +69,23 @@ This provides us access JSON files throughout our routes.
   - next 
 
 
+----
+
+## CORS
+- Cross Origin Resource Sharing
+  - A preflight action
+    - Checks to see what options are available for any type of requests prior to our route being triggered
+    - ( checks to see if your request is available )
+    - If the headers do not match in our request: it can throw an error
+    - Adding this dependency to our project can help resolve any of those issues
+    - ( this can help our application handle any potential errors throughout our build process )
+  - Dependency
+      - stop server and install as a dependency
+      - ```npm i cors```
+      - import within ```app.js``` above ```routes```.
+  - app.use(cors());
+  - In Postman get request its under headers (Access-Control-Allow-Origin) and value
+  - https://www.npmjs.com/package/cors
+
+
 

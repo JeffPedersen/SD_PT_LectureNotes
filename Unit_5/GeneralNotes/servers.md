@@ -49,6 +49,7 @@ This allows us to create our own routes and endpoints to perform CRUD functional
 - In the gitignore file we will add: `/node_modules`
 - This tells our local repository to ignore the node_modules folder when we push and backup our code to GitHub
 
+4. To double check that we can use the command "nodemon" to start the server, run the command `npm install --save-dev nodemon`
 ---
 
 What does it all mean??

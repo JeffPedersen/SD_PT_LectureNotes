@@ -14,23 +14,27 @@ const practiceController = require(`./controller/practice.controller`)
 
 const auth = require("./controller/auth.controller");
 const routes = require("./controller/routes.controller")
-// Importing the auth controller routes for the app to reference 
+// ^ Importing the auth controller routes for the app to reference 
 const { logTime } = require("./helpers");
-// require in the index.js form helpers(./helpers) w/ object destructuring
+// ^ require in the index.js form helpers(./helpers) w/ object destructuring
+
+// v Create a variable to require in and have CORS dependency accessible 
+const cors = require("cors");
 
 
 // --------------------App functionality/what it does -------------------
 // telling the express app to first use this middleware function
 app.use(logTime);
 
-
-
 //? Provide us access to use JSON within our routes
 // call on our app var, use the .use() method to tell our app express.json() -which means use json pleas express
 app.use(express.json());
 
 app.use(express.urlencoded());
-// Parses the body(of the request) from our browser so it can display the request
+// ^ Parses the body(of the request) from our browser so it can display the request
+app.use(cors());
+// ^ runs the cors preflight request prior to hitting our endpoints/routes
+// ^ allows all CORS requests
 
 // use a method call .use(), this points our express app to where it should go
 

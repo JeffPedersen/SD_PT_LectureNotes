@@ -14,7 +14,9 @@ const fs = require("fs");
     - Help us target specific set of data so that we can find one to update/del
 */
 
-//ToDo 
+// TODO: ////////////////////////////////////////////////////////////////////////
+// TODO GET ONE ITEM
+// TODO: ////////////////////////////////////////////////////////////////////////
 /*   build a route to GET one item from the "db"
     Syntax: 
     URL:    /:id
@@ -57,8 +59,9 @@ router.get("/:id", (req, res) => {
     }
 });
 
-
-//ToDo 
+// TODO: ////////////////////////////////////////////////////////////////////////
+// TODO GET ALL ITEM
+// TODO: ////////////////////////////////////////////////////////////////////////
 // build a route to GET all items in the "db"
 router.get("/", (req, res) => {
     try {
@@ -72,7 +75,9 @@ router.get("/", (req, res) => {
     }
 });
 
-//ToDo 
+// TODO: ////////////////////////////////////////////////////////////////////////
+// TODO POST NEW 
+// TODO: ////////////////////////////////////////////////////////////////////////
 // build a route to POST a new to do list item
 router.post("/", (req, res) => {
     try {
@@ -114,8 +119,9 @@ router.post("/", (req, res) => {
     }
 });
 
-
+// TODO: ////////////////////////////////////////////////////////////////////////
 // TODO: Updated (PUT)
+// TODO: ////////////////////////////////////////////////////////////////////////
 /* 
     - pass ID value as a param, /:id (id will become parameter name used inside logic)
     - iterate through options (look thru the db contents, comes back as an array)
@@ -128,7 +134,7 @@ router.post("/", (req, res) => {
     [x] start the route and add the param string
     [x] build skeleton try/catch
     [x] try is success response, grab param
-    [] create logic that uses an array method to find and match the param to db item
+    [x] create logic that uses an array method to find and match the param to db item
     [x] first I need fs to read the file w/ .readFile (ya gotta read the file before you can do anything to the contents)
     
 */
@@ -151,7 +157,7 @@ router.put("/:id", (req, res) => {
             // All the logic I want to build after fs reads the JSON file
             if (err) throw err;
 
-            const db = JSON.parse(data); // makes usable object
+            const db = JSON.parse(data); // makes usable object / transforming normal json quotes to normal and parses it into a plain array w/normal JS objects
             
             // declare a result variable to assign to later
             let result; //! revisit
@@ -182,5 +188,50 @@ router.put("/:id", (req, res) => {
         });
     }
 });
+
+
+// TODO: ////////////////////////////////////////////////////////////////////////
+// TODO DELETE
+// TODO: ////////////////////////////////////////////////////////////////////////
+/* 
+    - pass ID as a param / numberify it
+    - read file / fs.readfile
+    - filter to match the param value
+        - return what doesn't match
+    - write to file, fs.writefile()
+*/
+
+router.delete("/:id", (req, res) => {
+    try {
+        const id = Number(req.params.id); // grabbing the parameter
+        // no need for body
+        fs.readFile("./helpers/db.json", (err,data) => {
+            if (err) throw err;
+
+            const db = JSON.parse(data); // transforms normal JSON weird quote format to plain array w/normal js objects
+
+            // declare variable that holds and does all the sorting/filtering object
+
+            const filterDB = db.filter((e) => {
+                // check for id and return only what does not match
+                if (e.id != id) {
+                    return e;
+                } 
+            });
+
+            fs.writeFile("./helpers/db.json", JSON.stringify(filterDB), (err) => console.log(err));
+                res.status(200).json({
+                    status: `ID: ${id} was successfully deleted.`
+                });
+        })
+    } catch (err) {
+        res.status(500).json({
+            error: err.message,
+        });
+    }
+});
+
+
+
 
 module.exports = router;
