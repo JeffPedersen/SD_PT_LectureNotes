@@ -1,11 +1,1 @@
-[
-    {
-        "id": 1,
-        "name": "Simon",
-        "class": "Jester",
-        "age": 32,
-        "race": "Halfling",
-        "npc": false,
-        "level": 2
-    }
-]
+[{"id":1,"name":"Simon","classType":"Jester","age":32,"race":"Halfling","npc":false,"level":2},{"id":2,"name":"Link","classType":"Warrior","age":25,"race":"Hylian","npc":false,"level":1}]
