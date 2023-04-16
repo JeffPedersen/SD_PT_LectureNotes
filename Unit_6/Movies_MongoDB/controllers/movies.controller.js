@@ -125,6 +125,14 @@ router.get("/genre/:genre", async (req, res) => {
         // Grab genre value from param
         const { genre } = req.params;
 
+        if(genre) {
+            for(let i = 0; i < genre.length; i++) {
+                i === 0 ?
+                    buildWord = genre[i].toUpperCase():
+                    buildWord += genre[i].toLowerCase();
+            }
+        }
+
         // Finding all movies in db who's genre matches the params({db genre key : req.params.genre})
         const getMovies = await Movie.find({genre: genre})
 
