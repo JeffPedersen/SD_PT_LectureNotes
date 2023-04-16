@@ -7,7 +7,8 @@ const PORT = process.env.PORT;
 const log = console.log;
 
 //=============== CONTROLLERS ================
-const users = require("./controllerts/user.controller");
+const users = require("./controllers/user.controller");
+const movies = require("./controllers/movies.controller");
 
 // Require in the mongoose middleware, pulled from node_modules
 const mongoose = require("mongoose");
@@ -38,4 +39,8 @@ app.use(express.json());
 // http://localhost:4000/user
 app.use("/user", users);
 
+// http://localhost:4000/movies
+app.use("/movies", movies);
+
 app.listen(PORT, () => log(`Movie Server on Port: ${PORT}`));
+

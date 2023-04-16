@@ -1,0 +1,9 @@
+[
+    { "creatorName": "JP", "robotName": "numberOne", "robotColor": "green", "serialNumber": "1", "killer": false },
+    { "creatorName": "JP", "robotName": "numberTwo", "robotColor": "red", "serialNumber": "2", "killer": false },
+    { "creatorName": "JP", "robotName": "numberThree", "robotColor": "blue", "serialNumber": "3", "killer": true },
+    { "creatorName": "JP", "robotName": "numberFour", "robotColor": "gold", "serialNumber": "4", "killer": true },
+    { "creatorName": "JP", "robotName": "numberFive", "robotColor": "silver", "serialNumber": "5", "killer": true }
+]
+
+
