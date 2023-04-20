@@ -149,9 +149,61 @@ router.get("/genre/:genre", async (req, res) => {
   });
 
 //TODO PATCH One
- //! next class
+router.patch('/:id', async (req, res) => {
+    try {
+        //1. Pull value from parameter
+        const { id } = req.params;
+        
+        //2. Pull data from the body.
+        const { title, genre, rating, length, releaseYear } = req.body
+
+        //3. Use method .findOneAndUpdate to locate document based off ID and pass in new information.
+        //findOneAndUpdate(query/FileSystemEntry, document,option)
+        
+        const update = await Movie.findByIdAndUpdate(id, req.body, { new:true });
+        
+        //4. Respond to client.
+        res.status(200).json({update,
+            message: "Updated, yo"});
+    } catch (err) {
+        errorResponse(res, err);
+    }
+});
+
+//! alternative 
+    /*  const returnOption = { new:true };
+    const info = req.body;
+    const updatedMovie = await Movie.findOneAndUpdate(
+        { _id: id },
+        info,
+        returnOption
+      );
+  */
+
 //TODO Delete One
 //! next class
+router.delete('/:id', async (req,res) => {
+    try {
+        //1. Capture ID
+        const { id } = req.params;
+        
+        //1c. save the movie's title
+        const title = movieTitle.title;
+        //2. use delete method to locate and remove based off ID
+        const movieBeGone = await Movie.deleteOne({_id: id});
+
+        //3. Respond to Client
+        movieBeGone.deletedCount === 1 ?
+        res.status(200).json({
+            msg: `${title} was successfully deleted!`})
+        : res.status(404).json({
+            msg: "No movie found."
+        })
+    } catch (err) {
+        errorResponse(res, err);
+    }
+});
+
 
 module.exports = router;
 

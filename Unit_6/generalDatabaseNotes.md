@@ -173,3 +173,115 @@ Mongoose and MongoDB provides us with methods ( .example() ) to make affecting d
 - Has 3 optional parameters, with the first being `query` which specifies how/what filtering to use for selection.
 - When called with no parameters, returns all documents from a collection.
 - [MongoDB Docs: .find()](https://www.mongodb.com/docs/manual/reference/method/db.collection.find/)
+
+
+### .findOneAndUpdate()
+
+- Method used on a collection, ex: Movie.findOneAndUpdate()
+- Used most often with PUT or PATCH endpoints for updating documents in the DB.
+- Updates a single document based on the filter and sort criteria.
+- We care about using **these 3 parameters** (has many optional ones):
+  - a filter query
+  - an updated object
+  - an object detailing a boolean value as to whether we want the updated document returned right away (allows us to view the updated document)
+  - Ex: `const returnOption = {new: true};`
+- [MongoDB Docs: .findOneAndUpdate()](https://www.mongodb.com/docs/manual/reference/method/db.collection.findOneAndUpdate/)
+
+### .deleteOne()
+
+- Method used on a collection, ex. Movie.deleteOne()
+- Used with DELETE endpoint to delete documents in the DB.
+- Removes a single document from a collection.
+- Requires it's first parameter `filter` (has many optional ones):
+  - Requires a query as its argument to specify the deletion criteria
+- This will return back an object that holds a few values that we can assess:
+
+  - Based off the key: deletedCount.
+  - This provides back a numeric value as to how many records were deleted. (We can check this condition to create a conditional: If zero = false / otherwise provide a 200.)
+
+- [MongoDB Docs: .deleteOne()](https://www.mongodb.com/docs/manual/reference/method/db.collection.deleteOne/)
+
+
+
+<br>
+
+> <br>
+>
+> ## PUT vs PATCH
+>
+> MongoDB handles using both PUT and PATCH very effectively.
+>
+> ### PUT
+>
+> - Considers the complete document being updated.
+> - Used when needing to modify the document completely.
+> - Can be used to update just one field within the document BUT can cause issues.
+> - In short: PUT can work when updating one field (or key) within a document but may not be 100%. Used mainly to alter the whole document.
+>
+> ### PATCH
+>
+> - Considers individual fields within the Document.
+> - Suggested to use when updating just a portion of the document instead of the entire data within it.
+> - In short: PATCH isn't meant to alter the complete document but individual values within it.
+>
+> <br>
+<br>
+
+<br>
+
+# Adding Middleware to the Server
+
+Middleware is essentially a function that accesses our request, response, and moves on to other aspects of our code(with the next functionality).
+
+- Middleware can be customized to your project's needs.
+- Middleware functions have 3 parameters in it's call stack: (request, response, next)
+- In the Movie_MongoDB server we will use the middleware to build a way to validate a users session and tie movies added to their user id called: validate session.
+
+
+## Validate Session
+
+Validate Session is a middleware process that helps us (the sever/devs) verify if a user should be allowed to make various actions within the database
+
+- We can tie data together using the different documents Object ID (\_id key in DB) as a source/way to connect things so they belong to one another:
+
+> | User Doc ID | Name       | Phone       | Email       |
+> | ----------- | ---------- | ----------- | ----------- |
+> | A           | Joe Schmoe | 555-555-555 | joe@me.com  |
+> | B           | Jane Doe   | 555-555-555 | jane@me.com |
+>
+> | FoodOrder Doc ID | Meal             | Owner |
+> | ---------------- | ---------------- | ----- |
+> | 1                | Steak & Eggs     | A     |
+> | 3                | Pancakes & Bacon | B     |
+> | 2                | 3 Egg Breakfast  | B     |
+
+- Another Ex: When a user logs into their social media account(Instagram, FB, Reddit), they should only be allowed to post, update, or delete their own records(photos, posts, user profile, etc).
+
+### Our process:
+
+1. Create a `middleware` folder and `validate-session.js` file
+2. Build out the validate-session.js functionality
+
+- Use our token assigned to the user as our quick key.
+- Obtain and verify the token
+- Respond as necessary depending on the token provided.
+
+3. Update the code in our movie.model.js to include the user ID (so every movie will expect to have a user ID tied to it).
+4. Export our validateSession function and import it where necessary(app.js file _or_ individual routes).
+
+> #### Two ways to do this^ (#4):
+>
+> Import validate session and add it to app.js file:
+>
+> - We can encompass a complete controller by requiring our validate session above the route itself.
+> - This means ALL routes within any controllers below it will run this middle function.
+> - Remember JS still reading top to bottom so routes below validateSession need a user to be logged in before movie endpoints can be used.
+>
+> Import and add validate session directly in the route endpoints (movie.controller.js):
+>
+> - Validate session gets imported into the controller and passed as a second parameter in the CRUD routes.
+> - It is completely project dependant if you want a whole controller to need to first validate the session (make sure a user is logged in) before a user can access endpoints.
+> - Ex use case: This could make a site readable (GET routes), but not post-able/full CRUD unless a user is logged in... Could help define roles like a user vs an admin user's abilities... Etc.
+
+
+5. Update all endpoints that need to tie together the two documents (Ex. User and Movie)

@@ -10,6 +10,7 @@ app.use(express.json());
 const character = require("./controller/character.controller")
 
 // Middleware
+app.use(express.json());
 
 // Routes
 app.use("/characters", character);
