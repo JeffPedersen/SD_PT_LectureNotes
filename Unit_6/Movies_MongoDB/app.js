@@ -1,5 +1,5 @@
 // Connects our .env file to our proj
-require("dotenv").config();
+require("dotenv").config(); //! THIS GOES FIRST OR IT GETS UPSET
 const express = require("express");
 const app = express();
 // Points our environment file and puts the value of PORt from that variable into this PORT variable 
@@ -10,9 +10,12 @@ const log = console.log;
 const users = require("./controllers/user.controller");
 const movies = require("./controllers/movies.controller");
 
+//=============== MIDDLEWARE =================
+// importing in middleware
+const validateSession= require("./middleware/validate-session")
+
 // Require in the mongoose middleware, pulled from node_modules
 const mongoose = require("mongoose");
-
 // Create variable for our connection address variable from the .env
 const MONGO = process.env.MONGODB;
 
@@ -38,6 +41,12 @@ app.use(express.json());
 // =============== ROUTES TO CONTROLLERS =================
 // http://localhost:4000/user
 app.use("/user", users);
+
+// One way to implement validate session, directly in app.js
+// All routes below will require validation(logged in user w/ valid token) when used this way
+// app.use(validateSession);
+
+// Another way to implement validate session, is in movie.controller.js
 
 // http://localhost:4000/movies
 app.use("/movies", movies);

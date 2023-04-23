@@ -20,6 +20,10 @@ const MovieSchema = new mongoose.Schema({
     releaseYear: {
         type: Number,
         require: false,
+    },
+    // added property to store the users id of who made the movie obj/doc
+    owner_id: {
+        type: String,
     }
 });
 

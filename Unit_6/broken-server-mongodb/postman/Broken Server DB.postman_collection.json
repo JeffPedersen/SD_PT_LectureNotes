@@ -1,0 +1,262 @@
+{
+	"info": {
+		"_postman_id": "c53780ce-4264-4c73-ad57-9d69cf8656b5",
+		"name": "Broken Server DB",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7727936"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "localhost:4000/user/signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Rob\",\n    \"lastName\": \"V\",\n    \"email\": \"test2@test.com\",\n    \"password\": \"test1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/user/signup",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:4000/user/login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"test2@test.com\",\n    \"password\": \"test1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/user/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Game",
+			"item": [
+				{
+					"name": "localhost:4000/game/add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"game\": {\n     \"title\": \"Mario Brothers\",\n      \"studio\": \"Nintendo\",\n      \"user_rating\": 5,\n      \"have_played\": true\n}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/game/add",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"game",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:4000/game/",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"movieTitle\": \"Jurassic Park\",\n    \"movieDescription\": \"About dinosaurs\",\n    \"movieYear\": 2022,\n    \"isCurrentlyInTheaters\": false,\n    \"rating\": 8\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/game/",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"game",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:4000/game/owner",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"movieTitle\": \"Jurassic Park\",\n    \"movieDescription\": \"About dinosaurs\",\n    \"movieYear\": 2022,\n    \"isCurrentlyInTheaters\": false,\n    \"rating\": 8\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/game/owner",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"game",
+								"owner"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:4000/movie/",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/game/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"game",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "63b25f5494c37b7d305042c6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:4000/movie/update/:id",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Spiderman II\"\n    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/game/update/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"game",
+								"update",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "63b261aa6957a8466234f220"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
