@@ -28,6 +28,7 @@ Use middleware handled/made by mongoose:
     * Doesn't display until there is a document within the collection.
 */
 mongoose.connect(`${MONGO}/moviedb`);
+// connects our compass to the database
 
 // Create a variable that is an event listener to check if connected 
 const db = mongoose.connection;
