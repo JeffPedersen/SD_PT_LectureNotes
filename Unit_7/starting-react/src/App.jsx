@@ -6,6 +6,7 @@ import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 // Import AboutMe
 import AboutMe from "./components/aboutMe/AboutMe";
+import Employees from './components/employeeInformation/Employees';
 
 // This is a functional component: it is declared with the function keyword, the name of the function is the component name(App)
 function App() {
@@ -16,6 +17,7 @@ function App() {
       {/* To use an imported component it gets called as a self closing tag */}
       <Header />
       <AboutMe />
+      <Employees />
       <Footer />
     </div>
   );
