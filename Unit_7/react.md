@@ -149,3 +149,18 @@ This can give us the power to use js methods and logic to make many components!
 >
 > <br>
 <br>
+
+# React Extension
+**React Snippets**: This helps us make components quickly with a simple emmet-like command!
+
+dsznajder.es7-react-js-snippets
+[docs](https://github.com/ults-io/vscode-react-javascript-snippets/blob/HEAD/docs/Snippets.md)
+
+Quick Commands
+- rfce
+    - React Functional Component Export
+- rfc
+    - React Functional Component (default export)
+
+> Note: Automatically names our component based off the file name (you can change or edit if needed but that's why file names done correctly can make your job easier.)
+<br>

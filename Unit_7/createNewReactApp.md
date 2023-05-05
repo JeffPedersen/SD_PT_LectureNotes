@@ -7,6 +7,10 @@ to spin up and create the base React application.
 - `npx create-react-app starting-react`
 - **npx create-react-app [your-project-name]**
 
+We can also first create and name our project folder and run the following command in the terminal using the folder as the root:
+- **`npx create-react-app .`**
+This will create a React application within the current folder instead of create a new folder.
+
 > Note: your-project-name is just a filler for the example, you would want to insert whatever name you would like for your project.
 > 
 > Also... this is a *slightly* older command to start the project. If you check React's docs you will find they suggest that you use Next.js as a template. That is too much for us now, but I encourage you to look into Next.js post the program.
@@ -28,6 +32,32 @@ to spin up and create the base React application.
 | package.json | Just like with the server, this file is the "rubric" or hub for our front-end React application. |
 | README.md | React starts a basic README markdown file with some content on React and getting started. Eventually we will learn to build a ReadMe that describes our project's content. |
 
+<br>
+
+## Standard Cleanup of Boilerplate Content
+We don't have to necessarily delete any files, but to clean up the unused boilerplate contents to make room for our own is best to do at the start of creating a project.
+
+**Remove the following:**
+- In the `Public` folder:
+    - _logo files_, we don't need React's logo for our project. 
+
+- In the `src` folder:
+    - _App.test.js_ & _setupTest.js_, these handle all of our testing code that we may build. Because we are not going to run testing with this project, we don't need them.
+    - _logo.svg_, this is the a svg versioning of the React logo.
+
+    - In the `App.css` file:
+    - Clear out the boilerplate code
+
+- In the `README.md` file:
+    - Eventually you will want to replace the React content on the ReadMe with information specific to your application.
+    - Details of what to do in the project typically are written here.
+    - Well written documentation is greatly sought after as this does highlight great communication skills when working through development or making it easy for a user to use your product. (Think of how annoy it was to use bad docs for APIs... we don't want to do that.)
+
+
+**Update App.js to `App.jsx`**
+
+
+> Note: Know that this will cause some errors on start, but those will be easy to fix and cleaned up(removing src's to logos that no longer exist, etc.)
 <br>
 
 # File Structure & Contents
@@ -143,3 +173,5 @@ We will be creating a ``components`` folder **within** the ``src`` folder to hol
         </div>
     )
 ```
+
+
