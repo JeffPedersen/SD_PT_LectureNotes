@@ -3,7 +3,19 @@
   background-color: grey;
 }
 
+form {
+  margin: 3em;
+  text-align: center;
+}
+
+form > input {
+  width: 18em;
+  margin: .5em;
+  font-size: 16pt;
+}
+
 .welcome {
   font-size: 18pt;
   margin: 1em;
 }
+

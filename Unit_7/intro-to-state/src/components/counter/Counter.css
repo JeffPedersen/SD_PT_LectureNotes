@@ -1,0 +1,15 @@
+/* Add counter class to elemenets */
+.counter {
+    margin: 2em;
+}
+
+.counter > button {
+    font-size: 25px;
+    margin: 1em;
+    padding: 1px;
+    width: 1em;
+}
+
+.counter > span {
+    font-size: 25pt;
+}

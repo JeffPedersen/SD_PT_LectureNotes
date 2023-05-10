@@ -164,3 +164,95 @@ Quick Commands
 
 > Note: Automatically names our component based off the file name (you can change or edit if needed but that's why file names done correctly can make your job easier.)
 <br>
+
+# State
+**State** helps the program/us modify data based on a condition. It allows us to modify data that changes/needs to be able to change.
+- ex: 
+    - offline/online status
+    - session token storage
+- Utilizes React Hooks (useState is a built in React Hook)
+    - Hooks are functions that let you “hook into” React state and lifecycle features from function components.
+- It requires to be imported:
+    - `import { useState } from 'react'`
+
+    > <br>
+>
+> **Why this matters:**
+> - React is a programming paradigm: Programming paradigms are different ways or styles in which a given program or programming language can be organized.
+>   - ^That means we have to tell React how to behave/be organized.
+> - React is **Declarative**, which means that we can create components and React handles the procedures for us.
+> - DOM Manipulation is considered **Imperative**, it is procedural in nature: This means that we have have to go through specific procedures in order to change anything (select elements, provide values, append, etc). 
+>
+> State via useState() allows us to bridge that gap.
+>
+> <br>
+
+A true example of what we will see and use:
+```jsx
+    // An example with a string as the starting data type
+    const [ names, setName ] = useState("Frodo");
+    
+    // An example with an int as the starting data type
+    const [ count, setCount ] = useState(0);
+```
+
+## Changing State
+What if we want to update our information that is being held in our state?
+- Unfortunately, we are unable to modify our props.
+- _However_, we can utilize the **functions** to update the props!
+--> `keyword [ variable, function ] = hook(initial value);`
+
+## Re-rendering
+We can use a callback function to help with rendering processes.
+- useState can take raw value but also a callback function.
+
+ex: 
+```jsx
+const [ count, setCount ] = useState(0); // raw value
+const [ count, setCount ] = useState(() => 0); // CB Function
+```
+- Callback function renders initial value ONCE.
+
+We have another means that we can utilize to help us determine state values:
+
+## prevState
+`prev` is a required aspect and is associated with the variable within the useState( ) process. Aka: **prev = previous State.**
+- This allows us to view the previous value within the variable and run the process like before.
+    - Currently it doesn't seem to do much more for us; however, it does provide us with the ability to handle our data in a different way.
+    - We can know take in our value and manipulate it in different ways without needing to leave our function.
+
+ex: with prevCount
+```jsx
+    const countUp = () => {
+        // setCount(count + 1);
+        setCount(prevCount => prevCount + 1);
+    }
+```
+
+onChange & onSubmit
+- A SyntheticEvent that mimics DOM events.
+- In this case, when something _changes_ or when a form is _submitted_.
+
+<br>
+
+## handleChange()
+
+We want to capture the values for the submitted form(the values from the input fields):
+- We can use **state** to store our data.
+- We can do this with an **onChange** event. 
+- Each time a user types into our input field, it will "change" and trigger a function that we will create to manage our input data.
+
+**onChange**: This triggers an anonymous function that passes the event through it.
+- This event allows us access to the targets value.
+
+<br>
+
+## handleSubmit()
+
+We want to create a function to trigger when a submit event happens.
+
+**onSubmit**: An event handler function to trigger when a submit event takes place on a form.
+- Submit event fires on the form element itself when the user clicks a submit button or presses enter while editing a field.
+- [MDN Web Docs FormElement: submit event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event) 
+
+Our submit event is usually how we trigger a push/addition to local front end data _or_ call to our servers to send off the information to be processed and added to the DB by the server.
