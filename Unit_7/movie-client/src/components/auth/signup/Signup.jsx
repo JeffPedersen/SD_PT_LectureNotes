@@ -1,8 +1,10 @@
 // To use and access ReactStrap components we need to import them: 
 import { Form, FormGroup, Input, Label, Button } from 'reactstrap';
 import { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import FullButton from '../../buttons/FullButton';
 
-export default function Signup() {
+export default function Signup(updateToken) {
     // useState() to capture our firstName value and be able to update it with setFirstname(<-- state function)
     // const [ firstName, setFirstName ] = useState(''); 
     // ^ Updating to useRef() instead
@@ -12,6 +14,9 @@ export default function Signup() {
     const lastNameRef = useRef();
     const emailRef = useRef();
     const passwordRef = useRef();
+
+    // Declare and init navigate variable to hold useNavigate functionality
+    const navigate = useNavigate();
 
     // We need to build out the handle submit function 
     async function handleSubmit(e) {
@@ -51,7 +56,14 @@ export default function Signup() {
             // Build an async fetch, fetch will use the url and requestOptions obj
             const response = await fetch(url, requestOptions);
             const data = await response.json();
-            console.log(data)
+            //console.log(data)
+
+            if(data.message === 'Successful!') { // If the server send a success message we can update token and route to movie, if not we will get an alert
+                updateToken(data.token)
+                navigate('/movie');
+            } else {
+                alert(data.message);
+            }
 
         } catch (err) {
             console.log(err.message);
@@ -93,7 +105,9 @@ export default function Signup() {
                             autoComplete={"off"}
                             />
                     </FormGroup>
-                    <Button type='submit'>Signup</Button>
+                    <FullButton>
+                        <Button type='submit'>Signup</Button>
+                    </FullButton>
                 </Form>
     </>
   )
