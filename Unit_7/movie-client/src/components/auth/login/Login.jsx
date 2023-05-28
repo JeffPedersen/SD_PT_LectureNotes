@@ -48,7 +48,7 @@ export default function Login({updateToken}) {
     }
 
   return (
-    <><h2>Login</h2>
+    <>
         <h2>Login</h2>
             <Form onSubmit={handleSubmit}>
                 <FormGroup>

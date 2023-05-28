@@ -37,7 +37,7 @@ export default function Auth(props) {
                         </Col>
                     </Row>
                 </Container> :
-                <Container >
+                <Container>
                     <Row>
                         <Col md="6">
                             <Login
@@ -51,12 +51,12 @@ export default function Auth(props) {
     }
 
 
-  return (
-    <>
-        <FullButton>
-            <Button onClick={swapForm} color="dark"></Button>
+    return (
+        <>
+            
+                <Button onClick={swapForm} color="dark">{button}</Button>
+            
             {displayForm()}
-        </FullButton>
-    </>
-  )
-}
+        </>
+    )
+    }

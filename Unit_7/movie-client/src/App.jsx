@@ -1,8 +1,10 @@
 import './App.css';
 import Auth from './components/auth/Auth';
 import MovieIndex from './components/movie/MovieIndex';
+import MovieEdit from './components/movie/MovieEdit';
 import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom'
+import Logout from './components/auth/logout/Logout';
 
 
 function App() {
@@ -23,9 +25,15 @@ function App() {
       }
     }, []) // [] means this can happen on multiple times (refresh or page change)
   // Create routing using the Routes tag with the route tags holding the individual components/view
-  
+  // Add logout so it is visible ONLY when there is a a session token
+
   return (
     <div className="App">
+      {
+        sessionToken !== "" ?
+        <Logout setToken={setSessionToken}/> :
+        null
+      }
       <Routes>
         <Route
           path='/'
@@ -33,10 +41,13 @@ function App() {
           />
         <Route
           path='/movie'
-          element={<MovieIndex />}
+          element={<MovieIndex token={sessionToken}/>}
+          />
+        <Route
+          path="/movie/update/:id"
+          element={<MovieEdit token={sessionToken} />}
           />
       </Routes>
-      <Auth updateToken={updateToken}/>
     </div>
   );
 }

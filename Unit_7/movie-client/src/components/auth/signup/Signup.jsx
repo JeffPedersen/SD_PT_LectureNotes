@@ -74,41 +74,41 @@ export default function Signup(updateToken) {
   return (
     <>
         <h2>Signup</h2>
-                <Form onSubmit={handleSubmit}>
-                    <FormGroup>
-                        <Label>First Name:</Label>
-                        <Input 
-                            innerRef={firstNameRef}
-                            autoComplete={'off'}
-                        />
-                    </FormGroup>
-                    <FormGroup>
+            <Form onSubmit={handleSubmit}>
+                <FormGroup>
+                    <Label>First Name:</Label>
+                    <Input 
+                        innerRef={firstNameRef}
+                        autoComplete={"off"}
+                    />
+                </FormGroup>
+                <FormGroup>
                     <Label>Last Name:</Label>
                     <Input
                         innerRef={lastNameRef}
                         autoComplete={"off"}
                         />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label>Email:</Label>
-                        <Input
-                            innerRef={emailRef}
-                            type="email"
-                            autoComplete={"off"}
-                            />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label>Password</Label>
-                        <Input
-                            innerRef={passwordRef}
-                            type="password"
-                            autoComplete={"off"}
-                            />
-                    </FormGroup>
-                    <FullButton>
-                        <Button type='submit'>Signup</Button>
-                    </FullButton>
-                </Form>
+                </FormGroup>
+                <FormGroup>
+                    <Label>Email:</Label>
+                    <Input
+                        innerRef={emailRef}
+                        type="email"
+                        autoComplete={"off"}
+                        />
+                </FormGroup>
+                <FormGroup>
+                    <Label>Password</Label>
+                    <Input
+                        innerRef={passwordRef}
+                        type="password"
+                        autoComplete={"off"}
+                        />
+                </FormGroup>
+                <FullButton>
+                    <Button type='submit'>Signup</Button>
+                </FullButton>
+            </Form>
     </>
   )
 }
