@@ -36,7 +36,7 @@ export default function Login({updateToken}) {
 
             // Pass the data token value to my updateToken
             // If the server send a success message we can update token and route to movie, if not we will get an alert
-            if(data.message === 'Login successful!') {
+            if(data.message === 'Login success') {
                 updateToken(data.token)
                 navigate('/movie');
             } else {
